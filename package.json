@@ -32,7 +32,7 @@
     }
   },
   "scripts": {
-    "build": "make && rollup -c",
+    "build": "make && rollup -c && cp ./dist/yoga.wasm ./dist/yoga.bun",
     "typecheck": "tsc --noEmit",
     "test": "pnpm test:asm && pnpm test:wasm",
     "test:asm": "ASM=true vitest run --dir ./test",

@@ -1,10 +1,11 @@
-import { readFile } from "node:fs/promises";
 import initYoga from "./index.js";
+import { file } from "bun";
 
-import yogaFile from './yoga.wasm';
+// .wasm files currently not working  in bun with --compile
+import yogaFile from './yoga.bun';
 
 const Yoga = await initYoga(
-  await readFile(yogaFile)
+  await file(yogaFile).arrayBuffer()
 );
 
 export * from "../yoga/javascript/src_js/generated/YGEnums.js";
