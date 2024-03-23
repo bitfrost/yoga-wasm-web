@@ -2,10 +2,6 @@ name: "release"
 
 on:
     workflow_dispatch:
-        inputs:
-            parameter:
-              description: hello
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,33 +20,8 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
-      - name: Upload bundle
-        uses: actions/upload-artifact@v3
-        with:
-          name: bundle
-          path: dist
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [18, 20]
-    name: Test node v${{ matrix.node }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use pnpm
-        run: corepack enable pnpm && pnpm --version
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Download bundle
-        uses: actions/download-artifact@v3
-        with:
-          name: bundle
-          path: dist
-      - name: Install
-        run: pnpm install
-      - name: Type check
-        run: pnpm typecheck
-      - name: Test
-        run: pnpm test
+      - name: Publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
