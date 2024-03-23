@@ -2,6 +2,9 @@ name: "release"
 
 on:
     workflow_dispatch:
+        inputs:
+            parameter:
+              description: hello
 
 jobs:
   build:
