@@ -42,9 +42,6 @@
     "type": "git",
     "url": "git://github.com/bitfrost/yoga-wasm-web"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "license": "MIT",
   "files": [
     "dist",
